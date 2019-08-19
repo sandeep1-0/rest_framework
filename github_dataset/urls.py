@@ -19,15 +19,8 @@ from django.conf.urls import url
 from rest_framework import routers
 from main import views
 
-router = routers.DefaultRouter()
-router.register(r'actor', views.ActorViewSet)
-router.register(r'repo', views.RepoViewSet)
-router.register(r'event', views.EventViewSet)
 
 urlpatterns = [
-	path('', include(router.urls)),
-	path('login/', views.auth_login),
-	url(r'events/', views.EventView.as_view()),
+	url(r'student/', views.StudentView.as_view()),
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

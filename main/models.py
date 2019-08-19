@@ -1,14 +1,19 @@
 from django.db import models
 
-class Actor(models.Model):
-	login = models.CharField(max_length=100)
-	avatar_url = models.CharField(max_length=100)
 
-class Repo(models.Model):
-	name = models.CharField(max_length=100)
-	url = models.CharField(max_length=100)	
+class BranchDetails(models.Model):
+	branch_id = models.IntegerField(unique=True,primary_key=True)
+	branch_name = models.CharField(max_length=100)
 
-class Event(models.Model):
-	event_type = models.CharField(max_length=100)
-	actor = models.ForeignKey(Actor, related_name='actors', on_delete=models.CASCADE)
-	repo = models.ForeignKey(Repo, related_name='repos', on_delete=models.CASCADE)
+
+class StudentDetails(models.Model):
+	student_id = models.IntegerField(unique=True,primary_key=True)
+	student_name = models.CharField(max_length=50)
+	branch_id = models.ForeignKey(BranchDetails, on_delete=models.CASCADE)
+
+
+class MarkDetails(models.Model):
+	student_id = models.ForeignKey(StudentDetails,on_delete=models.CASCADE)
+	Subject1 = models.IntegerField(default=0)
+	Subject2 = models.IntegerField(default=0)
+	Subject3 = models.IntegerField(default=0)
